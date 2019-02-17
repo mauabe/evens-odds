@@ -4,6 +4,9 @@ import { startGame, cancelGame } from '../actions/settings';
 import { fetchNewDeck } from '../actions/deck';
 import Instructions from './Instructions';
 import fetchStates from '../reducers/fetchStates';
+import DrawCard from './DrawCard';
+import Card from './Card';
+
 class App extends Component{
   startGame = () =>{
     this.props.startGame()
@@ -29,6 +32,10 @@ class App extends Component{
             <div>
               <h3> The game is on!</h3>
               <br />
+              <DrawCard />
+              <hr />
+              <Card />
+              <hr />
               <button onClick={this.props.cancelGame}> Cancel Game </button>
             </div>
           ) : (

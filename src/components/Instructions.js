@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { expandInstructions, collapseInstructions } from '../actions/settings';
 
 const Instructions = props => {
-  const {instructionsExpanded, expandInstructions, collapseInstructions } = props;
-
-  console.log('instructionsExpanded from instructions: ', instructionsExpanded);
+  const {instructionsExpanded, expandInstructions, collapseInstructions } = props;  
+  // console.log('instructionsExpanded from instructions: ', instructionsExpanded);
 
 
   if(instructionsExpanded){
@@ -34,7 +33,7 @@ const Instructions = props => {
 }
 
 export default connect(
-  state => ({instructionsExpanded: state.instructionsExpanded }),
+  state => ({instructionsExpanded: state.settings.instructionsExpanded }),
   { expandInstructions, collapseInstructions }
 )(Instructions);
 

@@ -1,25 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import App from './components/App';
-import rootReducer from './reducers';
+import combineReducer from './reducers';
 import './index.css';
 
 
-const store = createStore(rootReducer);
+const store = createStore( combineReducer, applyMiddleware(thunk));
 
-console.log('store', store);
-console.log('store.getState()', store.getState() );
+console.log('store from createStore', store);
+console.log('store.getState() from store', store.getState() );
 
-store.subscribe(() => console.log('store.getState()', store.getState()));
-
-// store.dispatch(startGame());
-// store.dispatch(expandInstructions());
-// store.dispatch(cancelGame());
-// store.dispatch(collapseInstructions());
-
-
+store.subscribe(() => console.log('store.getState() from subscribe', store.getState()));
 
 ReactDOM.render(
   <Provider store={store}>

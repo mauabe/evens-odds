@@ -21,6 +21,23 @@ h1, h2, h3,h4,h5 {
   font-family: 'EconomicaBold';
 }
 
+.profile {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+}
+
+.title-fade-out {
+  opacity: 0;
+  animation-name: fade-out;
+  animation-duration: 2s;
+}
+
+.title-fade-in {
+  opacity: 100;
+  animation-name: fade-in;
+  animation-duration: 2s;
+}
 
 .fade-out{
   opacity : 0;

@@ -8,4 +8,4 @@ export default combineReducers({
   settings: settingsReducer,
   deck: deckReducer,
   gameState: gameStateReducer
-})
+});

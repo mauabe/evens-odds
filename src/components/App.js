@@ -2,23 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { startGame, cancelGame } from '../actions/settings';
 import { fetchNewDeck } from '../actions/deck';
-import Instructions from './Instructions';
 import fetchStates from '../reducers/fetchStates';
+import Instructions from './Instructions';
 import DrawCard from './DrawCard';
 import Card from './Card';
+import Guess from './Guess';
+import GameState from './GameState';
 
-class App extends Component{
-  startGame = () =>{
-    this.props.startGame()
-    this.props.fetchNewDeck()
+class App extends Component {
+  startGame = () => {
+    this.props.startGame();
+    this.props.fetchNewDeck();
   }
 
-  render(){
+  render() {
+    console.log('this', this);
 
-    if(this.props.fetchState === fetchStates.error){
-      return(
+    if (this.props.fetchState === fetchStates.error) {
+      return (
         <div>
-          <p>An error occurred, please try reloading the app</p>
+          <p>An error occurred. Please try reloading the page.</p>
           <p>{this.props.message}</p>
         </div>
       )
@@ -30,26 +33,28 @@ class App extends Component{
         {
           this.props.gameStarted ? (
             <div>
-              <h3> The game is on!</h3>
+              <h3>The game is on!</h3>
+              <GameState />
+              <Guess />
               <br />
               <DrawCard />
               <hr />
               <Card />
               <hr />
-              <button onClick={this.props.cancelGame}> Cancel Game </button>
+              <button onClick={this.props.cancelGame}>Cancel Game</button>
             </div>
           ) : (
             <div>
               <h3>A new game awaits</h3>
               <br />
-              <button onClick={this.startGame}> Start Game </button>
+              <button onClick={this.startGame}>Start Game</button>
               <hr />
               <Instructions />
             </div>
           )
         }
       </div>
-    )
+    );
   }
 }
 
@@ -57,27 +62,26 @@ const mapStateToProps = state => {
   // const { gameStarted, fetchState, message } = state.settings;
   // const {fetchState, message } = state.deck;
 
-  const{
+  const {
     settings: { gameStarted },
-    deck: { fetchState, message}
+    deck: { fetchState, message }
   } = state;
 
-  return{ gameStarted, fetchState, message };
+  return { gameStarted, fetchState, message };
 }
 
 // const mapDispatchToProps = dispatch => {
 //   return {
 //     startGame: () => dispatch(startGame()),
 //     cancelGame: () => dispatch(cancelGame()),
-//     fetchNeweck: () => fetchNewDeckResult(dispatch)
-//   }
+//     fetchNewDeck: () => dispatch(fetchNewDeck())
+//   };
 // }
 
 const componentConnector = connect(
   mapStateToProps,
   { startGame, cancelGame, fetchNewDeck }
-  );
+);
 
 export default componentConnector(App);
-
-//commited 5:38
+  

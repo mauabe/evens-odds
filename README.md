@@ -10,8 +10,9 @@ Beat the Cors error:
 
 Start server in terminal :
 
-```cd beat-cors-server
-npm i
-npm run start```
+```cd beat-cors-server```
+```npm i```
+```npm run start```
 
-The server on ```beat-cors-server/index.js``` and ```src/actions/deck.js``` file need matching urls for api.
+
+The server on ```beat-cors-server/index.js``` and ```src/actions/deck.js``` file need matching urls.
